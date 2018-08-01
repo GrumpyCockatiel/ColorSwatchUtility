@@ -29,4 +29,5 @@ io.groups = [group];
 // write the file
 io.write();
 
-print("Wrote \(io.colors.count) colors.");
+let total:Int = io.groups.reduce(0, {x,y in x+y.colors.count}) + io.colors.count
+print("Wrote \(total) colors.");
