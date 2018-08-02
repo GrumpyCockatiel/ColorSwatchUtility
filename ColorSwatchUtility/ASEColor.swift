@@ -9,7 +9,7 @@
 import Foundation
 import Cocoa
 
-//
+// generic block protocol
 protocol ASEBlock
 {
     var name:String { get set };
@@ -17,7 +17,7 @@ protocol ASEBlock
     func length() -> Int;
 }
 
-//
+// A single color
 class ASEColor : ASEBlock
 {
     var name:String = "";

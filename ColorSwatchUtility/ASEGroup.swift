@@ -8,9 +8,7 @@
 
 import Foundation
 
-
-
-//
+// a group of colors
 class ASEGroup : ASEBlock
 {
     var name:String = "";

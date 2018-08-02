@@ -10,6 +10,7 @@ import Foundation
 
 class ASEManager
 {
+    // file name to use
     var filename:String = "ColorSwatch";
     
     var colors:[ASEColor] = [];
@@ -22,7 +23,8 @@ class ASEManager
         self.filename = filename;
     }
     
-    //
+    // main ASE file write function
+    // write to a Data block and return to a file class to handle file writes
     func write() -> Void
     {
         if ( Foundation.FileManager.default.fileExists(atPath: outputURL.path) )
@@ -39,26 +41,27 @@ class ASEManager
         }
         
         // write header and version
-        self.writeHeader(aseFileHandle: aseFileHandle);
+        self.writeHeader(fileHandle: aseFileHandle);
         
         // write block count
-        self.writeBlockCount(aseFileHandle: aseFileHandle);
+        self.writeBlockCount(fileHandle: aseFileHandle);
         
         // write global colors
         for color:ASEColor in self.colors
         {
-            self.write(aseFileHandle: aseFileHandle, color:color);
+            self.write(fileHandle: aseFileHandle, color:color);
         }
         
         // write groups
         for grp:ASEGroup in self.groups
         {
-            self.write(aseFileHandle: aseFileHandle, group:grp);
+            self.write(fileHandle: aseFileHandle, group:grp);
         }
 
         aseFileHandle.closeFile();
     }
     
+    // resolve the default path to the desktop - put in another file
     private var outputURL:URL
     {
         let fileURL:URL = try! Foundation.FileManager.default.url(for: .desktopDirectory, in: .userDomainMask, appropriateFor: nil, create: true);
@@ -66,28 +69,28 @@ class ASEManager
         return fileURL.appendingPathComponent(self.filename).appendingPathExtension("ase");
     }
     
-    //
-    private func writeHeader(aseFileHandle:FileHandle)
+    // write the ASE file header
+    private func writeHeader(fileHandle:FileHandle)
     {
         // init with ASEF header
-        aseFileHandle.write(Data(bytes:[0x41, 0x53, 0x45, 0x46]));
+        fileHandle.write(Data(bytes:[0x41, 0x53, 0x45, 0x46]));
         
         // version 1.0
-        aseFileHandle.write(Data(bytes:[0x00, 0x01, 0x00, 0x00]));
+        fileHandle.write(Data(bytes:[0x00, 0x01, 0x00, 0x00]));
     }
     
     // write number of blocks
-    private func writeBlockCount(aseFileHandle:FileHandle)
+    private func writeBlockCount(fileHandle:FileHandle)
     {
         // Blocks = begin group block + #colors + end block
         // blocks = # of groups * 2 + number of colors + number of group colors
         let cnt:Int = (self.groups.count * 2) + self.colors.count + self.groups.reduce(0, {x,y in x+y.colors.count});
         var count:UInt32 = CFSwapInt32HostToBig(UInt32(cnt));
-        aseFileHandle.write(Data(bytes:&count, count:4));
+        fileHandle.write(Data(bytes:&count, count:4));
     }
     
     // write a string with null termination
-    private func writeString(aseFileHandle:FileHandle, str:String)
+    private func writeString(fileHandle:FileHandle, str:String)
     {
         //var len:UnsafeMutablePointer<Int> = UnsafeMutablePointer<Int>.allocate(capacity: 1);
         //current.name.getBytes(&buffer, maxLength: 1024, usedLength: len, encoding: NSUTF16BigEndianStringEncoding, range: 0.0..<Double(current.name.count), remaining: []);
@@ -99,72 +102,83 @@ class ASEManager
         var len:UInt16 = CFSwapInt16HostToBig(UInt16(str.count + 1));
         
         // write the length
-        aseFileHandle.write(Data(bytes:&len, count:2));
+        fileHandle.write(Data(bytes:&len, count:2));
         
         // the actual string
-        aseFileHandle.write(Data(bytes:bigEndianArray, count:str.count*2));
+        fileHandle.write(Data(bytes:bigEndianArray, count:str.count*2));
         
         // zero pad
-        aseFileHandle.write(Data(bytes:[0x00, 0x00], count:2));
+        fileHandle.write(Data(bytes:[0x00, 0x00], count:2));
     }
     
-    //
-    private func write(aseFileHandle:FileHandle, color:ASEColor) -> Void
+    // write a color block
+    private func write(fileHandle:FileHandle, color:ASEColor) -> Void
     {
         // write block type enum - color
         var bt:UInt16 = CFSwapInt16HostToBig(BlockType.color.rawValue);
-        aseFileHandle.write(Data(bytes:&bt, count:2));
+        fileHandle.write(Data(bytes:&bt, count:2));
         
         // write block length
         var blockLen:UInt32 = CFSwapInt32HostToBig(UInt32(color.length()));
-        aseFileHandle.write(Data(bytes:&blockLen, count:4));
+        fileHandle.write(Data(bytes:&blockLen, count:4));
         
         // write name
-        self.writeString(aseFileHandle: aseFileHandle, str: color.name)
+        self.writeString(fileHandle: fileHandle, str: color.name)
         
         // write color space as 4 char string RGB or CMYK
-        aseFileHandle.write( (ColorSpace.metadata[color.space]?.1)! );
+        fileHandle.write( (ColorSpace.metadata[color.space]?.1)! );
         //aseFileHandle.write(Data(bytes:[0x52, 0x47, 0x42, 0x20]));
         
         // write values
-        // STILL NEED TO FIX Based on space
-        var rgba:[CGFloat] = color.color.getRGBA();
-        aseFileHandle.write(float32SwappedToNetwork(Float32(rgba[0])));
-        aseFileHandle.write(float32SwappedToNetwork(Float32(rgba[1])));
-        aseFileHandle.write(float32SwappedToNetwork(Float32(rgba[2])));
+        // STILL NEED TO add gray and Lab
+        var values:[CGFloat] = color.color.getRGBA();
+        if ( color.space == .RGB)
+        {
+            fileHandle.write(float32SwappedToNetwork(Float32(values[0])));
+            fileHandle.write(float32SwappedToNetwork(Float32(values[1])));
+            fileHandle.write(float32SwappedToNetwork(Float32(values[2])));
+        }
+        else if ( color.space == .CMYK)
+        {
+            values = color.color.getCMYK();
+            fileHandle.write(float32SwappedToNetwork(Float32(values[0])));
+            fileHandle.write(float32SwappedToNetwork(Float32(values[1])));
+            fileHandle.write(float32SwappedToNetwork(Float32(values[2])));
+            fileHandle.write(float32SwappedToNetwork(Float32(values[3])));
+        }
         
         // write color type - global
         var ct:UInt16 = CFSwapInt16HostToBig(ColorType.global.rawValue);
-        aseFileHandle.write(Data(bytes:&ct, count:2));
+        fileHandle.write(Data(bytes:&ct, count:2));
         
         // write extra data
     }
     
-    //
-    private func write(aseFileHandle:FileHandle, group:ASEGroup) -> Void
+    // write the color group
+    private func write(fileHandle:FileHandle, group:ASEGroup) -> Void
     {
         // write group start
         var bt:UInt16 = CFSwapInt16HostToBig(BlockType.start.rawValue);
-        aseFileHandle.write(Data(bytes:&bt, count:2));
+        fileHandle.write(Data(bytes:&bt, count:2));
         
         // write block length
         var blockLen:UInt32 = CFSwapInt32HostToBig(UInt32(group.length()));
-        aseFileHandle.write(Data(bytes:&blockLen, count:4));
+        fileHandle.write(Data(bytes:&blockLen, count:4));
         
         // write name
-        self.writeString(aseFileHandle: aseFileHandle, str: group.name)
+        self.writeString(fileHandle: fileHandle, str: group.name)
         
         // write all the colors
         // write global colors
         for color:ASEColor in group.colors
         {
-            self.write(aseFileHandle: aseFileHandle, color:color);
+            self.write(fileHandle: fileHandle, color:color);
         }
         
         // write group end
         bt = CFSwapInt16HostToBig(BlockType.end.rawValue);
-        aseFileHandle.write(Data(bytes:&bt, count:2));
-        aseFileHandle.write(Data(bytes:[0x00, 0x00, 0x00, 0x00], count:4));
+        fileHandle.write(Data(bytes:&bt, count:2));
+        fileHandle.write(Data(bytes:[0x00, 0x00, 0x00, 0x00], count:4));
     }
     
     // converts a float to Big Endian
