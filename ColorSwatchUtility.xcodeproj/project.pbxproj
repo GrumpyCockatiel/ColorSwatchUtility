@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0B11EC9D2110B97F00510B01 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B11EC9C2110B97F00510B01 /* UIColorExtensions.swift */; };
+		0B11EC9D2110B97F00510B01 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B11EC9C2110B97F00510B01 /* ColorExtensions.swift */; };
 		0B11EC9F2110B9EC00510B01 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B11EC9E2110B9EC00510B01 /* StringExtensions.swift */; };
 		0B11ECA12112025A00510B01 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B11ECA02112025A00510B01 /* Types.swift */; };
 		0B11ECA32112028900510B01 /* ASEGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B11ECA22112028900510B01 /* ASEGroup.swift */; };
@@ -29,7 +29,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0B11EC9C2110B97F00510B01 /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
+		0B11EC9C2110B97F00510B01 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		0B11EC9E2110B9EC00510B01 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		0B11ECA02112025A00510B01 /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 		0B11ECA22112028900510B01 /* ASEGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASEGroup.swift; sourceTree = "<group>"; };
@@ -73,7 +73,7 @@
 				0B2E5EC0210FA36500D191F3 /* ASEManager.swift */,
 				0B2E5EC2210FA49A00D191F3 /* ASEColor.swift */,
 				0B11ECA22112028900510B01 /* ASEGroup.swift */,
-				0B11EC9C2110B97F00510B01 /* UIColorExtensions.swift */,
+				0B11EC9C2110B97F00510B01 /* ColorExtensions.swift */,
 				0B11EC9E2110B9EC00510B01 /* StringExtensions.swift */,
 				0B11ECA02112025A00510B01 /* Types.swift */,
 			);
@@ -144,7 +144,7 @@
 				0B11ECA12112025A00510B01 /* Types.swift in Sources */,
 				0B2E5EC3210FA49A00D191F3 /* ASEColor.swift in Sources */,
 				0B11ECA32112028900510B01 /* ASEGroup.swift in Sources */,
-				0B11EC9D2110B97F00510B01 /* UIColorExtensions.swift in Sources */,
+				0B11EC9D2110B97F00510B01 /* ColorExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

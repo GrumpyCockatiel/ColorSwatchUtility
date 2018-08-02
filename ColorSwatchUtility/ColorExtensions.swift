@@ -9,6 +9,7 @@
 import Foundation
 import Cocoa
 
+// extensions to NSColor
 extension NSColor
 {
     // init from a hex code value like A187FB, will remove any leading #

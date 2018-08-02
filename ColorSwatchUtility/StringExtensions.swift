@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Basic String Extensions
 extension String
 {
     //  returns an empty string
