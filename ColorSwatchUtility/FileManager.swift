@@ -32,7 +32,25 @@ class FileManager
         return fileURL.appendingPathComponent(self.filename).appendingPathExtension(self.ext);
     }
     
-    //
+    // read a file to a block of data
+    func read() -> Data
+    {
+        if ( !Foundation.FileManager.default.fileExists(atPath: self.outputURL.path) )
+        {
+            return Data();
+        }
+        
+        guard let handle:FileHandle = try? FileHandle(forReadingFrom: self.outputURL)
+        else
+        {
+            return Data();
+        }
+        
+        // write header and version
+        return handle.readDataToEndOfFile();
+    }
+    
+    // writes a block of data as a file
     func write(_ contents:Data) -> Bool
     {
         if ( Foundation.FileManager.default.fileExists(atPath: self.outputURL.path) )

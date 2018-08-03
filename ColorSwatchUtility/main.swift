@@ -45,5 +45,9 @@ var bytes:Data = ase.write();
 let io:FileManager = FileManager(name: "ColorSwatchUtil", ext:"ase");
 let result:Bool = io.write(bytes);
 
+// read the file back in
+bytes = io.read();
+let c = bytes.count
+
 let total:Int = ase.groups.reduce(0, {x,y in x+y.colors.count}) + ase.colors.count
-print("Wrote \(total) colors.");
+print("Wrote \(total) colors to an ASE file of size \(c).");
