@@ -26,15 +26,18 @@ class ASEColor : ASEBlock
     
     var space:ColorSpace = .RGB;
     
-    init(_ color:String, name:String )
+    // init with hex code and name
+    init(hexcode hex:String, name:String )
     {
         self.name = name;
-        self.color = NSColor(hexCode:color);
+        
+        self.color = NSColor(hexCode:hex);
     }
     
-    init(_ color:String )
+    // init with just hex code
+    init(hexcode hex:String )
     {
-        self.color = NSColor(hexCode:color);
+        self.color = NSColor(hexCode:hex)
     }
     
     // block length

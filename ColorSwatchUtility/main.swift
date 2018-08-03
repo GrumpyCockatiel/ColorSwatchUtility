@@ -14,26 +14,36 @@ import Foundation
 
 // create some colors using hex codes
 // colors are stored as NSColor but you can easily use UIColor or your own generic color class depending on your needs
-let black:ASEColor = ASEColor("#000000", name:"Black");
-let white:ASEColor = ASEColor("#FFFFFF", name:"White");
-let gray:ASEColor = ASEColor("#999999", name:"Gray");
-let red:ASEColor = ASEColor("#FF0000", name:"Red");
-let green:ASEColor = ASEColor("#00FF00", name:"Green");
-let blue:ASEColor = ASEColor("#0000FF", name:"Blue");
+let black:ASEColor = ASEColor(hexcode:"#000000", name:"Black");
+let white:ASEColor = ASEColor(hexcode:"#FFFFFF", name:"White");
+let gray1:ASEColor = ASEColor(hexcode:"#484848", name:"Dark Gray");
+let gray2:ASEColor = ASEColor(hexcode:"#888888", name:"Mid Gray");
+let gray3:ASEColor = ASEColor(hexcode:"#C8C8C8", name:"Light Gray");
+let red:ASEColor = ASEColor(hexcode:"#FF0000", name:"Red");
+let green:ASEColor = ASEColor(hexcode:"#00FF00", name:"Green");
+let blue:ASEColor = ASEColor(hexcode:"#0000FF", name:"Blue");
+let cyan:ASEColor = ASEColor(hexcode:"#00FFFF", name:"Cyan");
+let magenta:ASEColor = ASEColor(hexcode:"#FF00FF", name:"Magenta");
+let yellow:ASEColor = ASEColor(hexcode:"#FFFF00", name:"Yellow");
 
 // create a group
 let group:ASEGroup = ASEGroup("Primaries");
 group.colors.append(red);
 group.colors.append(green);
 group.colors.append(blue);
+group.colors.append(yellow);
+group.colors.append(cyan);
+group.colors.append(magenta);
 
 // create the manger and add everything
-let io:ASEManager = ASEManager("Test");
-io.colors = [black,white, gray];
-io.groups = [group];
+let ase:ASEManager = ASEManager();
+ase.colors = [black,white, gray1, gray2, gray3];
+ase.groups = [group];
+var bytes:Data = ase.write();
 
 // write the file
-io.write();
+let io:FileManager = FileManager(name: "ColorSwatchUtil", ext:"ase");
+let result:Bool = io.write(bytes);
 
-let total:Int = io.groups.reduce(0, {x,y in x+y.colors.count}) + io.colors.count
+let total:Int = ase.groups.reduce(0, {x,y in x+y.colors.count}) + ase.colors.count
 print("Wrote \(total) colors.");
