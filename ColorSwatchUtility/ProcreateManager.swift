@@ -8,7 +8,8 @@
 
 import Foundation
 
-class JSONManager
+//
+class ProcreateManager
 {
     // creates a save file
     func write(colors:[ASEColor]) -> String
