@@ -75,10 +75,10 @@
 			children = (
 				0B2E5EB9210FA33B00D191F3 /* main.swift */,
 				0B2E5EC0210FA36500D191F3 /* ASEManager.swift */,
+				0B11ECA62114E64D00510B01 /* ProcreateManager.swift */,
 				0B2E5EC2210FA49A00D191F3 /* ASEColor.swift */,
 				0B11ECA22112028900510B01 /* ASEGroup.swift */,
 				0B11ECA42114943400510B01 /* IOManager.swift */,
-				0B11ECA62114E64D00510B01 /* ProcreateManager.swift */,
 				0B11EC9C2110B97F00510B01 /* ColorExtensions.swift */,
 				0B11EC9E2110B9EC00510B01 /* StringExtensions.swift */,
 				0B11ECA02112025A00510B01 /* Types.swift */,

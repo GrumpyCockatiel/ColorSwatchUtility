@@ -11,12 +11,26 @@ import Foundation
 //
 class ProcreateManager
 {
+    var colors:[ASEColor] = [];
+    
+    //
+    init()
+    {
+        self.colors = [];
+    }
+    
+    //
+    init(colors:[ASEColor] )
+    {
+        self.colors = colors;
+    }
+    
     // creates a save file
-    func write(colors:[ASEColor]) -> String
+    func write() -> String
     {
         let root:NSMutableDictionary = NSMutableDictionary();
         
-        for c in colors
+        for c in self.colors
         {
             root.setValue( c.color.toDictionary, forKey: c.name );
         }

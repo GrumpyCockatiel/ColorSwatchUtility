@@ -49,5 +49,13 @@ let result:Bool = io.write(bytes);
 bytes = io.read();
 let c = bytes.count
 
+// create a Procreate manager of the same colors
+let pro:ProcreateManager = ProcreateManager(colors: ase.colors);
+pro.colors.append(contentsOf: group.colors);
+
+let json:String = pro.write();
+
 let total:Int = ase.groups.reduce(0, {x,y in x+y.colors.count}) + ase.colors.count
 print("Wrote \(total) colors to an ASE file of size \(c).");
+
+print(json);
