@@ -42,7 +42,7 @@ ase.groups = [group];
 var bytes:Data = ase.write();
 
 // write the file
-let io:FileManager = FileManager(name: "ColorSwatchUtil", ext:"ase");
+let io:IOManager = IOManager(name: "ColorSwatchUtil", ext:"ase");
 let result:Bool = io.write(bytes);
 
 // read the file back in

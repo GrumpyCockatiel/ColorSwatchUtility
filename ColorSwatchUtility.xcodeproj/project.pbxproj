@@ -11,7 +11,8 @@
 		0B11EC9F2110B9EC00510B01 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B11EC9E2110B9EC00510B01 /* StringExtensions.swift */; };
 		0B11ECA12112025A00510B01 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B11ECA02112025A00510B01 /* Types.swift */; };
 		0B11ECA32112028900510B01 /* ASEGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B11ECA22112028900510B01 /* ASEGroup.swift */; };
-		0B11ECA52114943400510B01 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B11ECA42114943400510B01 /* FileManager.swift */; };
+		0B11ECA52114943400510B01 /* IOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B11ECA42114943400510B01 /* IOManager.swift */; };
+		0B11ECA72114E64D00510B01 /* JSONManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B11ECA62114E64D00510B01 /* JSONManager.swift */; };
 		0B2E5EBA210FA33B00D191F3 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E5EB9210FA33B00D191F3 /* main.swift */; };
 		0B2E5EC1210FA36500D191F3 /* ASEManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E5EC0210FA36500D191F3 /* ASEManager.swift */; };
 		0B2E5EC3210FA49A00D191F3 /* ASEColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E5EC2210FA49A00D191F3 /* ASEColor.swift */; };
@@ -34,7 +35,8 @@
 		0B11EC9E2110B9EC00510B01 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		0B11ECA02112025A00510B01 /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 		0B11ECA22112028900510B01 /* ASEGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASEGroup.swift; sourceTree = "<group>"; };
-		0B11ECA42114943400510B01 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
+		0B11ECA42114943400510B01 /* IOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOManager.swift; sourceTree = "<group>"; };
+		0B11ECA62114E64D00510B01 /* JSONManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONManager.swift; sourceTree = "<group>"; };
 		0B2E5EB6210FA33B00D191F3 /* ColorSwatchUtility */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ColorSwatchUtility; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B2E5EB9210FA33B00D191F3 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		0B2E5EC0210FA36500D191F3 /* ASEManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASEManager.swift; sourceTree = "<group>"; };
@@ -75,7 +77,8 @@
 				0B2E5EC0210FA36500D191F3 /* ASEManager.swift */,
 				0B2E5EC2210FA49A00D191F3 /* ASEColor.swift */,
 				0B11ECA22112028900510B01 /* ASEGroup.swift */,
-				0B11ECA42114943400510B01 /* FileManager.swift */,
+				0B11ECA42114943400510B01 /* IOManager.swift */,
+				0B11ECA62114E64D00510B01 /* JSONManager.swift */,
 				0B11EC9C2110B97F00510B01 /* ColorExtensions.swift */,
 				0B11EC9E2110B9EC00510B01 /* StringExtensions.swift */,
 				0B11ECA02112025A00510B01 /* Types.swift */,
@@ -148,7 +151,8 @@
 				0B2E5EC3210FA49A00D191F3 /* ASEColor.swift in Sources */,
 				0B11ECA32112028900510B01 /* ASEGroup.swift in Sources */,
 				0B11EC9D2110B97F00510B01 /* ColorExtensions.swift in Sources */,
-				0B11ECA52114943400510B01 /* FileManager.swift in Sources */,
+				0B11ECA72114E64D00510B01 /* JSONManager.swift in Sources */,
+				0B11ECA52114943400510B01 /* IOManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

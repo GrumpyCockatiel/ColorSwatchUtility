@@ -9,7 +9,7 @@
 import Foundation
 
 // handles IO to a file
-class FileManager
+class IOManager
 {
     // file name to use
     var filename:String = "MyFile";
@@ -27,9 +27,9 @@ class FileManager
     // resolve the default path to the desktop - put in another file
     var outputURL:URL
     {
-        let fileURL:URL = try! Foundation.FileManager.default.url(for: .desktopDirectory, in: .userDomainMask, appropriateFor: nil, create: true);
+        let desktopURL:URL = try! Foundation.FileManager.default.url(for: .desktopDirectory, in: .userDomainMask, appropriateFor: nil, create: true);
         
-        return fileURL.appendingPathComponent(self.filename).appendingPathExtension(self.ext);
+        return desktopURL.appendingPathComponent(self.filename).appendingPathExtension(self.ext);
     }
     
     // read a file to a block of data

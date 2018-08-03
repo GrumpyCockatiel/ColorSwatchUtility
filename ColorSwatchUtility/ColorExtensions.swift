@@ -70,4 +70,39 @@ extension NSColor
         return [c,m,y,k];
     }
     
+    //
+    var toDictionary:[String:String]
+    {
+        var root:[String:String] = [String:String]();
+        root["colorSpaceModel"] = String(self.colorSpace.colorSpaceModel.rawValue);
+        
+        if let hsb:NSColor = self.usingColorSpace(NSColorSpace.deviceRGB)
+        {
+            root["hue"] = hsb.hueComponent.description;
+            root["saturation"] = hsb.saturationComponent.description;
+            root["brightness"] = hsb.brightnessComponent.description;
+            root["alpha"] = hsb.alphaComponent.description;
+        }
+        else
+        {
+            root["hue"] = "0.0";
+            root["saturation"] = "0.0";
+            root["brightness"] = "0.0";
+            root["alpha"] = "1.0";
+        }
+        
+        return root;
+    }
+    
+    //
+    static func fromDictionary(dict:[String:String]) -> NSColor
+    {
+        let hue:CGFloat = CGFloat( Double(dict["hue"]!)! );
+        let sat:CGFloat = CGFloat( Double(dict["saturation"]!)! );
+        let bright:CGFloat = CGFloat( Double(dict["brightness"]!)! );
+        let alpha:CGFloat = CGFloat( Double(dict["alpha"]!)! );
+        
+        return NSColor(deviceHue: hue, saturation: sat, brightness: bright, alpha: alpha);
+    }
+    
 }
