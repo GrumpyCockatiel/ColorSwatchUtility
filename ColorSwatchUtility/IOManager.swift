@@ -17,6 +17,9 @@ class IOManager
     // extensions to use
     var ext:String = "ase";
     
+    // what folder
+    var dir:FileManager.SearchPathDirectory = .desktopDirectory;
+    
     //
     init(name:String, ext:String)
     {
@@ -25,22 +28,42 @@ class IOManager
     }
 
     // resolve the default path to the desktop - put in another file
-    var outputURL:URL
+    var currentPath:URL
     {
-        let desktopURL:URL = try! Foundation.FileManager.default.url(for: .desktopDirectory, in: .userDomainMask, appropriateFor: nil, create: true);
+        get {
+            let desktopURL:URL = try! Foundation.FileManager.default.url(for: self.dir, in: .userDomainMask, appropriateFor: nil, create: true);
+            
+            return desktopURL.appendingPathComponent(self.filename).appendingPathExtension(self.ext);
+        }
+    }
+    
+    //
+    func readTxt() -> [String]
+    {
+        var lines:[String] = [String]();
         
-        return desktopURL.appendingPathComponent(self.filename).appendingPathExtension(self.ext);
+        do
+        {
+            let contents:String = try String(contentsOfFile: self.currentPath.path, encoding: String.Encoding.utf8);
+            lines = contents.components(separatedBy: "\n");
+        }
+        catch let error as NSError
+        {
+            print(error);
+        }
+        
+        return lines;
     }
     
     // read a file to a block of data
     func read() -> Data
     {
-        if ( !Foundation.FileManager.default.fileExists(atPath: self.outputURL.path) )
+        if ( !Foundation.FileManager.default.fileExists(atPath: self.currentPath.path) )
         {
             return Data();
         }
         
-        guard let handle:FileHandle = try? FileHandle(forReadingFrom: self.outputURL)
+        guard let handle:FileHandle = try? FileHandle(forReadingFrom: self.currentPath)
         else
         {
             return Data();
@@ -53,14 +76,14 @@ class IOManager
     // writes a block of data as a file
     func write(_ contents:Data) -> Bool
     {
-        if ( Foundation.FileManager.default.fileExists(atPath: self.outputURL.path) )
+        if ( Foundation.FileManager.default.fileExists(atPath: self.currentPath.path) )
         {
-            try! Foundation.FileManager.default.removeItem(at: self.outputURL);
+            try! Foundation.FileManager.default.removeItem(at: self.currentPath);
         }
         
-        Foundation.FileManager.default.createFile(atPath: self.outputURL.path, contents: nil, attributes: nil);
+        Foundation.FileManager.default.createFile(atPath: self.currentPath.path, contents: nil, attributes: nil);
         
-        guard let handle:FileHandle = try? FileHandle(forWritingTo: self.outputURL)
+        guard let handle:FileHandle = try? FileHandle(forWritingTo: self.currentPath)
         else
         {
             return false;
@@ -70,6 +93,29 @@ class IOManager
         handle.write(contents);
         
         handle.closeFile();
+        
+        return true;
+    }
+    
+    // writes a collection of Strings as lines in a file
+    func writeTxt(_ lines:[String]) -> Bool
+    {
+        var written:String = "";
+        
+        for s in lines
+        {
+            written.append(s);
+        }
+        
+        do
+        {
+            try written.write(to: self.currentPath, atomically: true, encoding: String.Encoding.utf8);
+        }
+        catch let error as NSError
+        {
+            print("Failed writing to URL: \(self.currentPath), Error: " + error.localizedDescription);
+            return false;
+        }
         
         return true;
     }

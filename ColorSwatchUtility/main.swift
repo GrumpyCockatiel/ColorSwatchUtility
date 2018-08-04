@@ -12,37 +12,23 @@
 
 import Foundation
 
-// create some colors using hex codes
-// colors are stored as NSColor but you can easily use UIColor or your own generic color class depending on your needs
-let black:ASEColor = ASEColor(hexcode:"#000000", name:"Black");
-let white:ASEColor = ASEColor(hexcode:"#FFFFFF", name:"White");
-let gray1:ASEColor = ASEColor(hexcode:"#484848", name:"Dark Gray");
-let gray2:ASEColor = ASEColor(hexcode:"#888888", name:"Mid Gray");
-let gray3:ASEColor = ASEColor(hexcode:"#C8C8C8", name:"Light Gray");
-let red:ASEColor = ASEColor(hexcode:"#FF0000", name:"Red");
-let green:ASEColor = ASEColor(hexcode:"#00FF00", name:"Green");
-let blue:ASEColor = ASEColor(hexcode:"#0000FF", name:"Blue");
-let cyan:ASEColor = ASEColor(hexcode:"#00FFFF", name:"Cyan");
-let magenta:ASEColor = ASEColor(hexcode:"#FF00FF", name:"Magenta");
-let yellow:ASEColor = ASEColor(hexcode:"#FFFF00", name:"Yellow");
+// read some data from a file
+let io:IOManager = IOManager(name: "Colors", ext:"txt");
+let colors:[String] = io.readTxt();
 
-// create a group
-let group:ASEGroup = ASEGroup("Primaries");
-group.colors.append(red);
-group.colors.append(green);
-group.colors.append(blue);
-group.colors.append(yellow);
-group.colors.append(cyan);
-group.colors.append(magenta);
+// use the CSV parser
+let csv:CSVManager = CSVManager();
+csv.read(lines: colors);
 
-// create the manger and add everything
+// create ASE manger and add everything
 let ase:ASEManager = ASEManager();
-ase.colors = [black,white, gray1, gray2, gray3];
-ase.groups = [group];
+ase.colors.append(contentsOf: csv.colors);
+//ase.groups = [group];
 var bytes:Data = ase.write();
 
 // write the file
-let io:IOManager = IOManager(name: "ColorSwatchUtil", ext:"ase");
+io.filename = "ColorSwatchUtil";
+io.ext = "ase";
 let result:Bool = io.write(bytes);
 
 // read the file back in
@@ -50,12 +36,40 @@ bytes = io.read();
 let c = bytes.count
 
 // create a Procreate manager of the same colors
-let pro:ProcreateManager = ProcreateManager(colors: ase.colors);
-pro.colors.append(contentsOf: group.colors);
+//let pro:ProcreateManager = ProcreateManager(colors: ase.colors);
+//pro.colors.append(contentsOf: group.colors);
 
-let json:String = pro.write();
+//let json:String = pro.write();
 
 let total:Int = ase.groups.reduce(0, {x,y in x+y.colors.count}) + ase.colors.count
 print("Wrote \(total) colors to an ASE file of size \(c).");
 
-print(json);
+//print(json);
+
+// create some colors for testing in code
+// colors are stored as NSColor but you can easily use UIColor or your own generic color class depending on your needs
+func someColors() -> ([ASEColor] , ASEGroup)
+{
+    let black:ASEColor = ASEColor(hexcode:"#000000", name:"Black");
+    let white:ASEColor = ASEColor(hexcode:"#FFFFFF", name:"White");
+    let gray1:ASEColor = ASEColor(hexcode:"#484848", name:"Dark Gray");
+    let gray2:ASEColor = ASEColor(hexcode:"#888888", name:"Mid Gray");
+    let gray3:ASEColor = ASEColor(hexcode:"#C8C8C8", name:"Light Gray");
+    let red:ASEColor = ASEColor(hexcode:"#FF0000", name:"Red");
+    let green:ASEColor = ASEColor(hexcode:"#00FF00", name:"Green");
+    let blue:ASEColor = ASEColor(hexcode:"#0000FF", name:"Blue");
+    let cyan:ASEColor = ASEColor(hexcode:"#00FFFF", name:"Cyan");
+    let magenta:ASEColor = ASEColor(hexcode:"#FF00FF", name:"Magenta");
+    let yellow:ASEColor = ASEColor(hexcode:"#FFFF00", name:"Yellow");
+
+    // create a group
+    let group:ASEGroup = ASEGroup("Primaries");
+    group.colors.append(red);
+    group.colors.append(green);
+    group.colors.append(blue);
+    group.colors.append(yellow);
+    group.colors.append(cyan);
+    group.colors.append(magenta);
+    
+    return ([black,white, gray1, gray2, gray3], group);
+}

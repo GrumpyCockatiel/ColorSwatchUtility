@@ -1,0 +1,11 @@
+Black,#000000
+White,#FFFFFF
+Gray1,#484848
+Gray2,#888888
+Gray3,#C8C8C8
+Red,#FF0000
+Green,#00FF00
+Blue,#0000FF
+Cyan,#00FFFF
+Magenta,#FF00FF
+Yellow,#FFFF00
