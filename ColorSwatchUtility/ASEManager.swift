@@ -22,25 +22,138 @@ class ASEManager
         self.groups = [];
     }
     
-    //
+    // inti with just colors
     init(colors:[ASEColor] )
     {
         self.colors = colors;
         self.groups = [];
     }
     
-    //
+    // init with a list of color color groups
     init(groups:[ASEGroup] )
     {
         self.colors = [];
         self.groups = groups;
     }
     
-    //
+    // init with individual colors and groups of colors
     init(colors:[ASEColor], groups:[ASEGroup] )
     {
         self.colors = colors;
         self.groups = groups;
+    }
+    
+    // reads an ASE data block back in
+    func read(block:Data) -> Bool
+    {
+        // reset everything
+        self.colors = [];
+        self.groups = [];
+        
+        let header:String? = String(bytes: [block[0],block[1],block[2],block[3]], encoding: .utf8);
+        
+        if ( header == nil || header != "ASEF")
+        { return false; }
+        
+        if ( block[4] != 0x00 && block[5] != 0x01 && block[6] != 0x00 && block[7] != 0x00)
+        { return false; }
+        
+        var _:UInt32 = self.bytesToUInt32(bytes: [block[8],block[9],block[10],block[11]]);
+
+        // jump to the first block
+        var i:Int = 12;
+        
+        // while less that total bytes
+        while ( i < block.count )
+        {
+            // track a color group
+            var group:ASEGroup? = nil;
+            
+            // read the block type
+            let type:BlockType? = BlockType( rawValue: self.bytesToUInt16(bytes: [block[i],block[i+1]]) );
+            i += 2;
+            
+            // read a color
+            if ( type == .color)
+            {
+                // read block length
+                let _ = self.bytesToUInt32(bytes: [block[i],block[i+1],block[i+2],block[i+3]]);
+                i += 4;
+                
+                // read name
+                let result:(String,Int) = self.readString(start: i, block: block);
+                i += result.1;
+                
+                // read the color space
+                let sd:Data = block.subdata( in: Range(i...i+4) );
+                let space:ColorSpace = ColorSpace(bytes:sd);
+                i += 4;
+                
+                if ( space == .RGB)
+                {
+                    // read the next 12 bytes
+                    let red:CGFloat = CGFloat( self.bytesToCGFloat( bytes: [block[i],block[i+1],block[i+2],block[i+3]] ) );
+                    i += 4;
+                    let green:CGFloat = CGFloat( self.bytesToCGFloat( bytes: [block[i],block[i+1],block[i+2],block[i+3]] ) );
+                    i += 4;
+                    let blue:CGFloat = CGFloat( self.bytesToCGFloat( bytes: [block[i],block[i+1],block[i+2],block[i+3]] ) );
+                    i += 4;
+                    
+                    let color:ASEColor = ASEColor(rgb: [red,green,blue], name: result.0);
+                    color.space = space;
+                    
+                    if let grp = group
+                    {
+                        grp.colors.append(color);
+                        
+                    }
+                    else
+                    { self.colors.append(color); }
+                }
+                else if ( space == .CMYK)
+                {
+                    i += 16;
+                    print("Not supported");
+                }
+                else if ( space == .Gray)
+                {
+                    i += 4;
+                    print("Not supported");
+                }
+                
+                // read color type
+                i += 2;
+            }
+            else if ( type == .start)
+            {
+                // read block length
+                let _ = self.bytesToUInt32(bytes: [block[i],block[i+1],block[i+2],block[i+3]]);
+                i += 4;
+                
+                // read name
+                let result:(String,Int) = self.readString(start: i, block: block);
+                i += result.1;
+                
+                // start an ASE Group
+                group = ASEGroup(result.0);
+            }
+            else if ( type == .end)
+            {
+                if ( block[i] != 0x00 && block[i+1] != 0x00 && block[i+2] != 0x00 && block[i+3] != 0x00)
+                { print("End of Group not found."); }
+                
+                i += 4;
+                
+                // add current group to groups
+                if let grp = group
+                { self.groups.append(grp); }
+                group = nil;
+            }
+            else
+            { print("Unknown block type encountered."); }
+        }
+        
+        return true;
     }
     
     // main ASE file write function, wrtites to a Data block
@@ -87,6 +200,19 @@ class ASEManager
         let cnt:Int = (self.groups.count * 2) + self.colors.count + self.groups.reduce(0, {x,y in x+y.colors.count});
         var count:UInt32 = CFSwapInt32HostToBig(UInt32(cnt));
         block.append(Data(bytes:&count, count:4));
+    }
+    
+    // read a string starting at the location specified
+    private func readString(start:Int, block:Data) -> (String, Int)
+    {
+        let len:UInt16 = self.bytesToUInt16(bytes: [block[start],block[start+1]]);
+        let sd:Data = block.subdata( in: Range(start+2...start+2+Int(len*2)-2) );
+        let name:String? = String(bytes: sd, encoding: .utf16);
+        
+        if (name == nil)
+        { return (String.empty, 2+Int(len*2) ); }
+        
+        return (name!, 2+Int(len*2) );
     }
     
     // write a string with null termination
@@ -186,5 +312,38 @@ class ASEManager
     {
         var sf32:CFSwappedFloat32 = CFConvertFloat32HostToSwapped(f);
         return Data(bytes:&(sf32.v), count:MemoryLayout<UInt32>.size);
+    }
+    
+    //
+    func bytesToUInt32(bytes:[UInt8]) -> UInt32
+    {
+        // get the block count
+        let b:UInt32 = [bytes[0],bytes[1],bytes[2],bytes[3]].withUnsafeBufferPointer {
+            ($0.baseAddress!.withMemoryRebound(to: UInt32.self, capacity: 1) { $0 })
+            }.pointee;
+        
+        return CFSwapInt32BigToHost(b);
+    }
+    
+    //
+    func bytesToUInt16(bytes:[UInt8]) -> UInt16
+    {
+        let b:UInt16 = [bytes[0],bytes[1]].withUnsafeBufferPointer {
+            ($0.baseAddress!.withMemoryRebound(to: UInt16.self, capacity: 1) { $0 })
+            }.pointee;
+        
+        return CFSwapInt16BigToHost(b);
+    }
+    
+    //
+    func bytesToCGFloat(bytes:[UInt8]) -> Float32
+    {
+        let b:UInt32 = [bytes[0],bytes[1],bytes[2],bytes[3]].withUnsafeBufferPointer {
+            ($0.baseAddress!.withMemoryRebound(to: UInt32.self, capacity: 1) { $0 })
+            }.pointee;
+        
+        let arg:CFSwappedFloat32 = CFSwappedFloat32(v: b);
+        
+        return CFConvertFloat32SwappedToHost(arg);
     }
 }

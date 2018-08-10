@@ -11,6 +11,29 @@ import Foundation
 // enuermates the different color space models
 enum ColorSpace : String
 {
+    init()
+    {
+        self = .Unknown;
+    }
+    
+    // init from the 4 bytes
+    init(bytes:Data)
+    {
+        switch bytes[0]
+        {
+            case 0x52:
+                self = .RGB;
+            case 0x43:
+                self = .CMYK;
+            case 0x47:
+                self = .Gray;
+            case 0x4c:
+                    self = .Lab;
+            default:
+                self = .Unknown;
+        }
+    }
+    
     case Unknown = "";
     case XYZ = "xyz";
     case RGB = "rgb";
