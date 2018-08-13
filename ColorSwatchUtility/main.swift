@@ -14,7 +14,7 @@ import Foundation
 
 
 // read some data from a TXT file
-let io:IOManager = IOManager(name: "Colors", ext:"txt");
+let io:IOManager = IOManager(name: "Copic 358", ext:"txt");
 let colors:[String] = io.readTxt();
 
 // parse the lines
@@ -31,7 +31,7 @@ ase.groups = csv.groups;
 var bytes:Data = ase.write();
 
 // write the ASE file
-io.filename = "ColorSwatchTest";
+io.filename = "Copic 358";
 io.ext = "ase";
 let result:Bool = io.write(bytes);
 
@@ -46,7 +46,7 @@ if ( ase.read(block: bytes) )
 csv.colors = ase.colors;
 csv.groups = ase.groups;
 let colors2:[String] = csv.write();
-io.filename = "ColorsNew";
+io.filename = "Copic Copy";
 io.ext = "txt";
 _ = io.write(colors2);
 

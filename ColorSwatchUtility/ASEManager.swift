@@ -111,8 +111,26 @@ class ASEManager
                 }
                 else if ( space == .CMYK)
                 {
-                    i += 16;
-                    print("Not supported");
+                    // read the next 16 bytes
+                    let cyan:CGFloat = CGFloat( self.bytesToCGFloat( bytes: [block[i],block[i+1],block[i+2],block[i+3]] ) );
+                    i += 4;
+                    let magenta:CGFloat = CGFloat( self.bytesToCGFloat( bytes: [block[i],block[i+1],block[i+2],block[i+3]] ) );
+                    i += 4;
+                    let yellow:CGFloat = CGFloat( self.bytesToCGFloat( bytes: [block[i],block[i+1],block[i+2],block[i+3]] ) );
+                    i += 4;
+                    let black:CGFloat = CGFloat( self.bytesToCGFloat( bytes: [block[i],block[i+1],block[i+2],block[i+3]] ) );
+                    i += 4;
+                    
+                    let color:ASEColor = ASEColor(cmyk: [cyan,magenta,yellow,black], name: result.0);
+                    color.space = space;
+                    
+                    if let grp = group
+                    {
+                        grp.colors.append(color);
+                    }
+                    else
+                    { self.colors.append(color); }
+                    
                 }
                 else if ( space == .Gray)
                 {

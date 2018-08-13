@@ -54,6 +54,15 @@ class ASEColor : ASEBlock
         self.color = NSColor(red: rgb[0], green: rgb[1], blue: rgb[2], alpha: 1);
     }
     
+    // init with an array of CMYK values (16 bytes)
+    init(cmyk:[CGFloat], name:String )
+    {
+        self.name = name;
+        
+        let rgb:[CGFloat] = NSColor.CMYKToRGB(cmyk);
+        self.color = NSColor(red: rgb[0], green: rgb[1], blue: rgb[2], alpha: 1);
+    }
+    
     // block length
     func length() -> Int
     {

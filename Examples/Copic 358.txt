@@ -1,0 +1,359 @@
+name,color,group
+0,#FFFFFF,
+100,#0D0C0C,
+110,#000000,
+C-00,#E9F2F2,Cool Gray
+C-0,#E5F0F0,Cool Gray
+C-1,#DAE5E5,Cool Gray
+C-2,#CAD9D9,Cool Gray
+C-3,#BCCACC,Cool Gray
+C-4,#9FB1B2,Cool Gray
+C-5,#879799,Cool Gray
+C-6,#6C7E80,Cool Gray
+C-7,#4C5859,Cool Gray
+C-8,#363F40,Cool Gray
+C-9,#1F2626,Cool Gray
+C-10,#0A0D0D,Cool Gray
+N-0,#EBEBEB,Neutral Gray
+N-1,#E0E0E0,Neutral Gray
+N-2,#D6D6D6,Neutral Gray
+N-3,#CCCCCC,Neutral Gray
+N-4,#B2B2B2,Neutral Gray
+N-5,#999999,Neutral Gray
+N-6,#808080,Neutral Gray
+N-7,#595959,Neutral Gray
+N-8,#404040,Neutral Gray
+N-9,#262626,Neutral Gray
+N-10,#0D0D0D,Neutral Gray
+T-0,#EBEBEB,Tonal Gray
+T-1,#E8E8E6,Tonal Gray
+T-2,#DEDED9,Tonal Gray
+T-3,#CCCCC4,Tonal Gray
+T-4,#B2B1AC,Tonal Gray
+T-5,#999791,Tonal Gray
+T-6,#807E79,Tonal Gray
+T-7,#595854,Tonal Gray
+T-8,#403F3C,Tonal Gray
+T-9,#262624,Tonal Gray
+T-10,#0D0D0C,Tonal Gray
+W-00,#F2F2E9,Warm Gray
+W-0,#F2F2E7,Warm Gray
+W-1,#E5E5DB,Warm Gray
+W-2,#E5E5DF,Warm Gray
+W-3,#CCCCC2,Warm Gray
+W-4,#B2B2A8,Warm Gray
+W-5,#999990,Warm Gray
+W-6,#808077,Warm Gray
+W-7,#595953,Warm Gray
+W-8,#40403B,Warm Gray
+W-9,#262623,Warm Gray
+W-10,#0D0D0C,Warm Gray
+B0000,#F2FFFF,Blue
+B000,#E8FFF5,Blue
+B00,#E5FFFA,Blue
+B01,#D9FFF2,Blue
+B02,#B8FFF2,Blue
+B04,#80FFEB,Blue
+B05,#61FFED,Blue
+B06,#19FFF2,Blue
+B12,#CCFAF2,Blue
+B14,#80FFF2,Blue
+B16,#40FFF5,Blue
+B18,#33A6FF,Blue
+B21,#E0FAFF,Blue
+B23,#99E0FF,Blue
+B24,#94F5FF,Blue
+B26,#70D9FF,Blue
+B28,#216EFF,Blue
+B29,#008AFF,Blue
+B32,#E5FAFA,Blue
+B34,#8AE8FF,Blue
+B37,#1975D6,Blue
+B39,#2460F0,Blue
+B41,#E5FAFF,Blue
+B45,#80E8FF,Blue
+B52,#ADD9D9,Blue
+B60,#DEEBFF,Blue
+B63,#ABCCFF,Blue
+B66,#6194FF,Blue
+B69,#195EFC,Blue
+B79,#1926FF,Blue
+B91,#D9F0F2,Blue
+B93,#99E0ED,Blue
+B95,#73C4E0,Blue
+B97,#3885B8,Blue
+B99,#003DA1,Blue
+BG0000,#F0FFF2,Blue Green
+BG000,#E8FFED,Blue Green
+BG01,#CCFAFF,Blue Green
+BG02,#C9FFEB,Blue Green
+BG05,#8CFFE7,Blue Green
+BG07,#49F2CE,Blue Green
+BG09,#37F0C7,Blue Green
+BG10,#E0FFF0,Blue Green
+BG11,#D1FFF2,Blue Green
+BG13,#C7FFE9,Blue Green
+BG15,#A3FFCC,Blue Green
+BG18,#54FF9C,Blue Green
+BG23,#BFFFD9,Blue Green
+BG32,#BDFFD1,Blue Green
+BG34,#A6FFD4,Blue Green
+BG45,#B2FFDF,Blue Green
+BG49,#33FFAB,Blue Green
+BG53,#ADEBD7,Blue Green
+BG57,#6BF2B8,Blue Green
+BG70,#DEF8F0,Blue Green
+BG72,#75E3BD,Blue Green
+BG75,#4DAD8C,Blue Green
+BG78,#31775C,Blue Green
+BG90,#E9F2E6,Blue Green
+BG93,#B6C4B0,Blue Green
+BG96,#79B17F,Blue Green
+BG99,#66AD71,Blue Green
+BV0000,#EDEBFF,Blue Violet
+BV000,#EBE3FF,Blue Violet
+BV00,#E5E0FF,Blue Violet
+BV01,#C9D4FF,Blue Violet
+BV02,#ADC7FC,Blue Violet
+BV04,#7AA5FF,Blue Violet
+BV08,#9973FF,Blue Violet
+BV11,#D9D9FF,Blue Violet
+BV13,#8099FF,Blue Violet
+BV17,#638CF5,Blue Violet
+BV20,#D4E8FF,Blue Violet
+BV23,#B4CEF0,Blue Violet
+BV25,#7486D2,Blue Violet
+BV29,#162B57,Blue Violet
+BV31,#E0EBFF,Blue Violet
+BV34,#9BA9C4,Blue Violet
+E0000,#FFFAF5,Earth
+E000,#FFF5F0,Earth
+E00,#FFF2ED,Earth
+E01,#FFEDE8,Earth
+E02,#FFEBE5,Earth
+E04,#E6B0D8,Earth
+E07,#CE6C6C,Earth
+E08,#CC4752,Earth
+E09,#DF4848,Earth
+E11,#FFE8DB,Earth
+E13,#E9C0B4,Earth
+E15,#FFB08A,Earth
+E17,#B1414F,Earth
+E18,#73353D,Earth
+E19,#C22E19,Earth
+E21,#FFE0CC,Earth
+E23,#EDC8B6,Earth
+E25,#D1977D,Earth
+E27,#8D6C5B,Earth
+E29,#6B1F00,Earth
+E30,#F7F0E1,Earth
+E31,#F2E4CB,Earth
+E33,#F2CDAE,Earth
+E34,#F0C6A3,Earth
+E35,#E5BEA1,Earth
+E37,#C8824A,Earth
+E39,#C45C1F,Earth
+E40,#F4E9DE,Earth
+E41,#FFF0E5,Earth
+E42,#F2E9D8,Earth
+E43,#E7DBB7,Earth
+E44,#C3BBA6,Earth
+E47,#735749,Earth
+E49,#503E2C,Earth
+E50,#F5EDF7,Earth
+E51,#FFEBD9,Earth
+E53,#F2E6BB,Earth
+E55,#F0DDB1,Earth
+E57,#A9744B,Earth
+E59,#907B65,Earth
+E70,#F2EDED,Earth
+E71,#E5DEDE,Earth
+E74,#997C7C,Earth
+E77,#6E5340,Earth
+E79,#261717,Earth
+E81,#EEEDBA,Earth
+E84,#A6A677,Earth
+E87,#5D5B3F,Earth
+E89,#453C26,Earth
+E93,#FFCCBF,Earth
+E95,#FFB273,Earth
+E97,#F28C4D,Earth
+E99,#AB4205,Earth
+G0000,#F2FFF2,Green
+G000,#EBFFEB,Green
+G00,#E5FFF5,Green
+G02,#CFFFCC,Green
+G03,#B0FF80,Green
+G05,#66FF4D,Green
+G07,#75FF4A,Green
+G09,#73FF33,Green
+G12,#D1FFB8,Green
+G14,#91FF6E,Green
+G16,#63FF79,Green
+G17,#34FF50,Green
+G19,#47FF61,Green
+G20,#EDFFD4,Green
+G21,#C4FFC4,Green
+G24,#BFFFA1,Green
+G28,#28C736,Green
+G29,#2C943B,Green
+G40,#E5FFD9,Green
+G43,#D4FF91,Green
+G46,#53C251,Green
+G82,#CAE8AC,Green
+G85,#99DD99,Green
+G94,#8EBE75,Green
+G99,#50851B,Green
+R0000,#FFF2F2,Red
+R000,#FFF2F2,Red
+R00,#FFF0F0,Red
+R01,#FFDEE5,Red
+R02,#FFCCD4,Red
+R05,#FF7887,Red
+R08,#FF4054,Red
+R11,#FFDEDE,Red
+R12,#FFCCCC,Red
+R14,#FF85A8,Red
+R17,#FF6670,Red
+R20,#FFD1E0,Red
+R21,#FFB5C9,Red
+R22,#FFA8C9,Red
+R24,#FF5297,Red
+R27,#FF2978,Red
+R29,#FF0059,Red
+R30,#FFE0EB,Red
+R32,#FFB4CF,Red
+R35,#FF4DAD,Red
+R37,#F34A90,Red
+R39,#D027B6,Red
+R43,#F766B2,Red
+R46,#EB268A,Red
+R56,#D762C1,Red
+R59,#B73197,Red
+R81,#F6BDEF,Red
+R83,#FA85ED,Red
+R85,#DA48D3,Red
+R89,#6E144E,Red
+RV0000,#F5EBFF,Red Violet
+RV000,#F7E0FF,Red Violet
+RV00,#F5D6FF,Red Violet
+RV02,#FFCCFF,Red Violet
+RV04,#FF8CF2,Red Violet
+RV06,#FF66F2,Red Violet
+RV09,#EB4FFF,Red Violet
+RV10,#FFE8FF,Red Violet
+RV11,#FFCFF2,Red Violet
+RV13,#FFBDF7,Red Violet
+RV14,#FF78F2,Red Violet
+RV17,#E561FF,Red Violet
+RV19,#DB47FF,Red Violet
+RV21,#FFE5F4,Red Violet
+RV23,#FFABEB,Red Violet
+RV25,#FF78FF,Red Violet
+RV29,#FF21C4,Red Violet
+RV32,#FFCCE0,Red Violet
+RV34,#FF9EC9,Red Violet
+RV42,#FFADCC,Red Violet
+RV52,#FFBDFF,Red Violet
+RV55,#F295FF,Red Violet
+RV63,#D293CE,Red Violet
+RV66,#B650AE,Red Violet
+RV69,#7B3F89,Red Violet
+RV91,#E9D0F5,Red Violet
+RV93,#EDABF2,Red Violet
+RV95,#B575CC,Red Violet
+RV99,#46385D,Red Violet
+V0000,#F2F0FF,Violet
+V000,#EDE8FF,Violet
+V01,#EBBAFC,Violet
+V04,#ED9CFF,Violet
+V05,#EB96FF,Violet
+V06,#D487FF,Violet
+V09,#7536FF,Violet
+V12,#F1D3FF,Violet
+V15,#D99EFF,Violet
+V17,#9E91FF,Violet
+V20,#E2E3FB,Violet
+V22,#B5B5EB,Violet
+V25,#797DE5,Violet
+V28,#5E5DA1,Violet
+V91,#EDBFED,Violet
+V93,#EBBAFF,Violet
+V95,#B569E3,Violet
+V99,#261952,Violet
+Y0000,#FFFFF2,Yellow
+Y000,#FFFFE5,Yellow
+Y00,#FFFFD9,Yellow
+Y02,#F5FF7D,Yellow
+Y04,#E8F733,Yellow
+Y06,#FFFF4D,Yellow
+Y08,#FFFF00,Yellow
+Y11,#FFFFBF,Yellow
+Y13,#FAFF99,Yellow
+Y15,#FFF04F,Yellow
+Y17,#FFEB38,Yellow
+Y18,#FFF738,Yellow
+Y19,#FFF226,Yellow
+Y21,#FFF0B8,Yellow
+Y23,#FCE5AD,Yellow
+Y26,#EBE149,Yellow
+Y28,#C4AD52,Yellow
+Y32,#FADEC2,Yellow
+Y35,#FFD961,Yellow
+Y38,#FFD25C,Yellow
+YG0000,#F2FFD9,Yellow Green
+YG00,#E3F787,Yellow Green
+YG01,#E5FFB2,Yellow Green
+YG03,#DDFF94,Yellow Green
+YG05,#D2FF74,Yellow Green
+YG06,#BFFF73,Yellow Green
+YG07,#99FF19,Yellow Green
+YG09,#77FF33,Yellow Green
+YG11,#E3FFC4,Yellow Green
+YG13,#CFFF85,Yellow Green
+YG17,#69FF1F,Yellow Green
+YG21,#F6FFAD,Yellow Green
+YG23,#E3FF74,Yellow Green
+YG25,#C8FF57,Yellow Green
+YG41,#D6FFCC,Yellow Green
+YG45,#B2FFA6,Yellow Green
+YG61,#D6FAD1,Yellow Green
+YG63,#9DED8C,Yellow Green
+YG67,#7BED6B,Yellow Green
+YG91,#D9E5A6,Yellow Green
+YG93,#CFE58C,Yellow Green
+YG95,#C1CD3E,Yellow Green
+YG97,#7F8700,Yellow Green
+YG99,#3D6600,Yellow Green
+YR0000,#FFF2E8,Yellow Red
+YR000,#FFEBDE,Yellow Red
+YR00,#FFD1C4,Yellow Red
+YR01,#FFD6C7,Yellow Red
+YR02,#FFD9CC,Yellow Red
+YR04,#FFBE51,Yellow Red
+YR07,#FF4D26,Yellow Red
+YR09,#FF2E00,Yellow Red
+YR12,#FFE399,Yellow Red
+YR14,#FFC733,Yellow Red
+YR15,#FF8C38,Yellow Red
+YR16,#FFB10F,Yellow Red
+YR18,#FF4729,Yellow Red
+YR20,#FFE0BF,Yellow Red
+YR21,#F5E0AB,Yellow Red
+YR23,#E8CF79,Yellow Red
+YR24,#EDD347,Yellow Red
+YR27,#D94519,Yellow Red
+YR30,#FFF3DB,Yellow Red
+YR31,#FFDE9E,Yellow Red
+YR61,#FFD6C9,Yellow Red
+YR65,#FFA14D,Yellow Red
+YR68,#FF4D00,Yellow Red
+YR82,#FFBF85,Yellow Red
+FB2,#26B2FF,Fluorescent
+FBG2,#75FFED,Fluorescent
+FRV1,#FF8CFF,Fluorescent
+FV2,#736BFF,Fluorescent
+FY1,#FFFF7D,Fluorescent
+FYG1,#CCF78C,Fluorescent
+FYG2,#91FF0A,Fluorescent
+FYR1,#FFC794,Fluorescent

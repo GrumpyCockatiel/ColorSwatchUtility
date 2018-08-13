@@ -54,19 +54,19 @@ extension NSColor
         
         if ( !red.isNaN)
         {
-            temp = UInt(round(red * 255));
+            temp = UInt(round(red));
         }
         temp = temp << 8;
         
         if ( !green.isNaN )
         {
-            temp = temp | UInt(round(green * 255))
+            temp = temp | UInt(round(green))
         }
         temp = temp << 8;
         
         if ( !blue.isNaN )
         {
-            temp = temp | UInt(round(blue * 255))
+            temp = temp | UInt(round(blue))
         }
         
         if (temp > 0)
@@ -104,6 +104,20 @@ extension NSColor
         }
         
         return [c,m,y,k];
+    }
+    
+    // convience func to conert a CMYK array in decimal fomat to RGB (0-255) format
+    static func CMYKToRGB(_ source:[CGFloat]) -> [CGFloat]
+    {
+        let c:CGFloat = ( source[0] * ( 1 - source[3] ) + source[3] )
+        let m:CGFloat = ( source[1] * ( 1 - source[3] ) + source[3] )
+        let y:CGFloat = ( source[2] * ( 1 - source[3] ) + source[3] )
+        
+        let r:CGFloat = ( 1 - c ) * 255.0;
+        let g:CGFloat = ( 1 - m ) * 255.0
+        let b:CGFloat = ( 1 - y ) * 255.0
+        
+        return [r,g,b];
     }
     
     // converts the color value to a dictionary
