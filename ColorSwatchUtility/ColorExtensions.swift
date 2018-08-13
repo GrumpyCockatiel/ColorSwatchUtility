@@ -141,4 +141,15 @@ extension NSColor
         return NSColor(deviceHue: hue, saturation: sat, brightness: bright, alpha: alpha);
     }
     
+    // generate a random color
+    // replace with Float.random(in: 0...1.0) when on Swift 4.2
+    static func randomColor() -> NSColor
+    {
+        let r = CGFloat(arc4random_uniform(256))/CGFloat(255)
+        let g = CGFloat(arc4random_uniform(256))/CGFloat(255)
+        let b = CGFloat(arc4random_uniform(256))/CGFloat(255)
+        let a = CGFloat(arc4random_uniform(256))/CGFloat(255)
+        return NSColor(red: r, green: g, blue: b, alpha: a)
+    }
+    
 }

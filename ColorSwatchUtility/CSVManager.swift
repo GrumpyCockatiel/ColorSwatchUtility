@@ -33,6 +33,7 @@ class CSVManager
     func write() -> [String]
     {
         var out:String = headers.joined(separator: ",");
+        out += "\n";
         
         for c in self.colors
         {
@@ -51,8 +52,10 @@ class CSVManager
     }
     
     // read the lines and split on the , assume order name, color, group (optional) for now
-    func read(lines:[String], withHeaders:Bool = true)
+    func read(lines:[String], withHeaders:Bool = true) -> Int
     {
+        var count:Int = 0;
+        
         for (idx,s) in lines.enumerated()
         {
             if ( withHeaders && idx == 0)
@@ -67,6 +70,7 @@ class CSVManager
             {
                 let color:ASEColor = ASEColor(hexcode: parts[1], name:parts[0]);
                 self.colors.append(color);
+                count += 1;
             }
             else // group color
             {
@@ -84,8 +88,11 @@ class CSVManager
                     group.colors.append( ASEColor(hexcode: parts[1], name:parts[0]) );
                     self.groups.append(group);
                 }
+                
+                count += 1;
             }
-
         }
+        
+        return count;
     }
 }

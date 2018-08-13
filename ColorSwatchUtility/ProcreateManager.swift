@@ -13,6 +13,8 @@ class ProcreateManager
 {
     var colors:[ASEColor] = [];
     
+    var groups:[ASEGroup] = [];
+    
     //
     init()
     {

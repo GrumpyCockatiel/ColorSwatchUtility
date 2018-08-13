@@ -13,15 +13,14 @@
 import Foundation
 
 
-// read some data from a file
+// read some data from a TXT file
 let io:IOManager = IOManager(name: "Colors", ext:"txt");
 let colors:[String] = io.readTxt();
 
 // parse the lines
 let csv:CSVManager = CSVManager();
-csv.read(lines: colors);
-
-tester.printer(colors: csv.colors, groups: csv.groups);
+if ( csv.read(lines: colors) > 0)
+{ tester.printer(colors: csv.colors, groups: csv.groups); }
 
 // create ASE manger and add everything
 let ase:ASEManager = ASEManager();
@@ -31,7 +30,7 @@ ase.groups = csv.groups;
 // write to bytes
 var bytes:Data = ase.write();
 
-// write the file
+// write the ASE file
 io.filename = "ColorSwatchTest";
 io.ext = "ase";
 let result:Bool = io.write(bytes);
@@ -41,13 +40,18 @@ bytes = io.read();
 let c = bytes.count
 
 if ( ase.read(block: bytes) )
-{
-    tester.printer(colors: ase.colors, groups: ase.groups);
-}
+{ tester.printer(colors: ase.colors, groups: ase.groups); }
 
+// write back the CSV data
+csv.colors = ase.colors;
+csv.groups = ase.groups;
+let colors2:[String] = csv.write();
+io.filename = "ColorsNew";
+io.ext = "txt";
+_ = io.write(colors2);
 
 // create a Procreate manager of the same colors
-//let pro:ProcreateManager = ProcreateManager(colors: ase.colors);
+let pro:ProcreateManager = ProcreateManager(colors: ase.colors);
 //pro.colors.append(contentsOf: group.colors);
 
 //let json:String = pro.write();

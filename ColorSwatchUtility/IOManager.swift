@@ -98,7 +98,7 @@ class IOManager
     }
     
     // writes a collection of Strings as lines in a file
-    func writeTxt(_ lines:[String]) -> Bool
+    func write(_ lines:[String]) -> Bool
     {
         var written:String = "";
         
