@@ -54,19 +54,19 @@ extension NSColor
         
         if ( !red.isNaN)
         {
-            temp = UInt(round(red));
+            temp = UInt(round(red * 255));
         }
         temp = temp << 8;
         
         if ( !green.isNaN )
         {
-            temp = temp | UInt(round(green))
+            temp = temp | UInt(round(green * 255))
         }
         temp = temp << 8;
         
         if ( !blue.isNaN )
         {
-            temp = temp | UInt(round(blue))
+            temp = temp | UInt(round(blue * 255))
         }
         
         if (temp > 0)

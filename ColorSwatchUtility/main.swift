@@ -12,7 +12,6 @@
 
 import Foundation
 
-
 // read some data from a TXT file
 let io:IOManager = IOManager(name: "Copic 358", ext:"txt");
 let colors:[String] = io.readTxt();
@@ -52,9 +51,10 @@ _ = io.write(colors2);
 
 // create a Procreate manager of the same colors
 let pro:ProcreateManager = ProcreateManager(colors: ase.colors);
-//pro.colors.append(contentsOf: group.colors);
+pro.colors = ase.colors;
+pro.groups = ase.groups;
 
-//let json:String = pro.write();
+let json:String = pro.write();
 
 //let total:Int = ase.groups.reduce(0, {x,y in x+y.colors.count}) + ase.colors.count
 //print("Wrote \(total) colors to an ASE file of size \(c).");

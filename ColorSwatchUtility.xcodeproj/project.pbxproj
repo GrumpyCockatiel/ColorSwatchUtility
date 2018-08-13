@@ -46,6 +46,7 @@
 		0B2E5EC0210FA36500D191F3 /* ASEManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASEManager.swift; sourceTree = "<group>"; };
 		0B2E5EC2210FA49A00D191F3 /* ASEColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASEColor.swift; sourceTree = "<group>"; };
 		0B672F9621209B8300EAC313 /* Tester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tester.swift; sourceTree = "<group>"; };
+		0B86F09E2122193F00F0956D /* Copic 358.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Copic 358.txt"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +63,7 @@
 		0B2E1590211628340097135D /* Examples */ = {
 			isa = PBXGroup;
 			children = (
+				0B86F09E2122193F00F0956D /* Copic 358.txt */,
 				0B2E159121164F050097135D /* Colors.txt */,
 			);
 			path = Examples;
