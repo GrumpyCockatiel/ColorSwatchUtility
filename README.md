@@ -1,4 +1,4 @@
 # ColorSwatchUtility
-Some simple Swift 4 classes to write a list of colors to an Adobe ASE Swatch file.  
+Some simple Swift 4 classes to convert a collection of colors to/from an Adobe ASE Swatch file, Procreate file or plain CSV file. 
 More to come.  
 
