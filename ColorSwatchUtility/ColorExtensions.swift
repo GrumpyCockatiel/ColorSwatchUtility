@@ -124,14 +124,14 @@ extension NSColor
     var toDictionary:[String:String]
     {
         var root:[String:String] = [String:String]();
-        root["colorSpaceModel"] = String(self.colorSpace.colorSpaceModel.rawValue);
+        //root["colorSpaceModel"] = String(self.colorSpace.colorSpaceModel.rawValue);
         
         if let hsb:NSColor = self.usingColorSpace(NSColorSpace.deviceRGB)
         {
             root["hue"] = hsb.hueComponent.description;
             root["saturation"] = hsb.saturationComponent.description;
             root["brightness"] = hsb.brightnessComponent.description;
-            root["alpha"] = hsb.alphaComponent.description;
+            //root["alpha"] = hsb.alphaComponent.description;
         }
         else
         {

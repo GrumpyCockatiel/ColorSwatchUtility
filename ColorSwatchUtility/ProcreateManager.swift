@@ -8,12 +8,14 @@
 
 import Foundation
 
-//
+// Procreate files are JSON files zipped with the .zip changed to .swatches
 class ProcreateManager
 {
     var colors:[ASEColor] = [];
     
     var groups:[ASEGroup] = [];
+    
+    var name:String = "Swatch";
     
     //
     init()
@@ -27,19 +29,35 @@ class ProcreateManager
         self.colors = colors;
     }
     
-    // creates a save file
+    // writes a big JSON string of data
     func write() -> String
     {
         let root:NSMutableDictionary = NSMutableDictionary();
+        root.setValue( self.name, forKey: "name");
+        
+        var data:[[String:String]] = [];
         
         for c in self.colors
         {
-            root.setValue( c.color.toDictionary, forKey: c.name );
+            data.append(c.color.toDictionary);
+            //root.setValue( c.color.toDictionary, forKey: c.name );
         }
+        
+        for grp in groups
+        {
+            for cg in grp.colors
+            {
+                data.append(cg.color.toDictionary);
+                //root.setValue( cg.color.toDictionary, forKey: cg.name );
+            }
+        }
+        
+        root.setValue(data, forKey: "swatches");
         
         do
         {
-            let jsonData:Data = try JSONSerialization.data(withJSONObject: root, options: []);
+            // output the top object as an array
+            let jsonData:Data = try JSONSerialization.data(withJSONObject: [root], options: []);
             let jsonStr:String = String(data: jsonData, encoding: String.Encoding.utf8)!;
             return jsonStr;
         }

@@ -37,7 +37,7 @@ class IOManager
         }
     }
     
-    //
+    // reads a file of text
     func readTxt() -> [String]
     {
         var lines:[String] = [String]();

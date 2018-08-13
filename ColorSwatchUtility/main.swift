@@ -55,9 +55,8 @@ pro.colors = ase.colors;
 pro.groups = ase.groups;
 
 let json:String = pro.write();
+print(json);
 
 //let total:Int = ase.groups.reduce(0, {x,y in x+y.colors.count}) + ase.colors.count
 //print("Wrote \(total) colors to an ASE file of size \(c).");
-
-//print(json);
 
