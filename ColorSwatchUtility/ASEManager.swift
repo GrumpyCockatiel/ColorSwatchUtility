@@ -63,12 +63,12 @@ class ASEManager
         // jump to the first block
         var i:Int = 12;
         
+        // track a color group
+        var group:ASEGroup? = nil;
+        
         // while less that total bytes
         while ( i < block.count )
         {
-            // track a color group
-            var group:ASEGroup? = nil;
-            
             // read the block type
             let type:BlockType? = BlockType( rawValue: self.bytesToUInt16(bytes: [block[i],block[i+1]]) );
             i += 2;
@@ -105,7 +105,6 @@ class ASEManager
                     if let grp = group
                     {
                         grp.colors.append(color);
-                        
                     }
                     else
                     { self.colors.append(color); }

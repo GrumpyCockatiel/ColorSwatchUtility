@@ -39,6 +39,42 @@ extension NSColor
         self.init(red:r, green: g, blue: b, alpha: 1.0);
     }
     
+    // returns the color in a string hex format with no leading #
+    func getHexCode(_ withHash:Bool = true) -> String
+    {
+        var red:CGFloat = 0;
+        var green:CGFloat = 0;
+        var blue:CGFloat = 0;
+        var alpha:CGFloat = 0;
+        
+        self.getRed(&red, green: &green, blue: &blue, alpha: &alpha);
+        
+        var temp:UInt = 0;
+        var result:String = "000000";
+        
+        if ( !red.isNaN)
+        {
+            temp = UInt(round(red * 255));
+        }
+        temp = temp << 8;
+        
+        if ( !green.isNaN )
+        {
+            temp = temp | UInt(round(green * 255))
+        }
+        temp = temp << 8;
+        
+        if ( !blue.isNaN )
+        {
+            temp = temp | UInt(round(blue * 255))
+        }
+        
+        if (temp > 0)
+        { result = String(format:"%06X", temp ); }
+
+        return (withHash) ? "#"+result : result;
+    }
+    
     // convert to RGBA values represented as [0,1.0]
     func getRGBA() -> [CGFloat]
     {
@@ -70,7 +106,7 @@ extension NSColor
         return [c,m,y,k];
     }
     
-    //
+    // converts the color value to a dictionary
     var toDictionary:[String:String]
     {
         var root:[String:String] = [String:String]();
@@ -94,7 +130,7 @@ extension NSColor
         return root;
     }
     
-    //
+    // parses a color value from a dictionary of HSBA values
     static func fromDictionary(dict:[String:String]) -> NSColor
     {
         let hue:CGFloat = CGFloat( Double(dict["hue"]!)! );

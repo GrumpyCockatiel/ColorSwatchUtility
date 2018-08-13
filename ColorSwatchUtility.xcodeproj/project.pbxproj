@@ -17,6 +17,7 @@
 		0B2E5EBA210FA33B00D191F3 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E5EB9210FA33B00D191F3 /* main.swift */; };
 		0B2E5EC1210FA36500D191F3 /* ASEManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E5EC0210FA36500D191F3 /* ASEManager.swift */; };
 		0B2E5EC3210FA49A00D191F3 /* ASEColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E5EC2210FA49A00D191F3 /* ASEColor.swift */; };
+		0B672F9721209B8300EAC313 /* Tester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B672F9621209B8300EAC313 /* Tester.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -44,6 +45,7 @@
 		0B2E5EB9210FA33B00D191F3 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		0B2E5EC0210FA36500D191F3 /* ASEManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASEManager.swift; sourceTree = "<group>"; };
 		0B2E5EC2210FA49A00D191F3 /* ASEColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASEColor.swift; sourceTree = "<group>"; };
+		0B672F9621209B8300EAC313 /* Tester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tester.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 			children = (
 				0B2E5EB8210FA33B00D191F3 /* ColorSwatchUtility */,
 				0B2E1590211628340097135D /* Examples */,
+				0B672F9521209B6400EAC313 /* Tests */,
 				0B2E5EB7210FA33B00D191F3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -97,6 +100,14 @@
 				0B11ECA02112025A00510B01 /* Types.swift */,
 			);
 			path = ColorSwatchUtility;
+			sourceTree = "<group>";
+		};
+		0B672F9521209B6400EAC313 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				0B672F9621209B8300EAC313 /* Tester.swift */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,6 +177,7 @@
 				0B11ECA32112028900510B01 /* ASEGroup.swift in Sources */,
 				0B11EC9D2110B97F00510B01 /* ColorExtensions.swift in Sources */,
 				0B11ECA72114E64D00510B01 /* ProcreateManager.swift in Sources */,
+				0B672F9721209B8300EAC313 /* Tester.swift in Sources */,
 				0B11ECA52114943400510B01 /* IOManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

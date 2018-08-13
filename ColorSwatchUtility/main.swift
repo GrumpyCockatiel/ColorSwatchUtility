@@ -12,33 +12,6 @@
 
 import Foundation
 
-// create some colors for testing in code
-// colors are stored as NSColor but you can easily use UIColor or your own generic color class depending on your needs
-func someColors() -> ([ASEColor] , ASEGroup)
-{
-    let black:ASEColor = ASEColor(hexcode:"#000000", name:"Black");
-    let white:ASEColor = ASEColor(hexcode:"#FFFFFF", name:"White");
-    let gray1:ASEColor = ASEColor(hexcode:"#484848", name:"Dark Gray");
-    let gray2:ASEColor = ASEColor(hexcode:"#888888", name:"Mid Gray");
-    let gray3:ASEColor = ASEColor(hexcode:"#C8C8C8", name:"Light Gray");
-    let red:ASEColor = ASEColor(hexcode:"#FF0000", name:"Red");
-    let green:ASEColor = ASEColor(hexcode:"#00FF00", name:"Green");
-    let blue:ASEColor = ASEColor(hexcode:"#0000FF", name:"Blue");
-    let cyan:ASEColor = ASEColor(hexcode:"#00FFFF", name:"Cyan");
-    let magenta:ASEColor = ASEColor(hexcode:"#FF00FF", name:"Magenta");
-    let yellow:ASEColor = ASEColor(hexcode:"#FFFF00", name:"Yellow");
-    
-    // create a group
-    let group:ASEGroup = ASEGroup("Primaries");
-    group.colors.append(red);
-    group.colors.append(green);
-    group.colors.append(blue);
-    group.colors.append(yellow);
-    group.colors.append(cyan);
-    group.colors.append(magenta);
-    
-    return ([black,white, gray1, gray2, gray3], group);
-}
 
 // read some data from a file
 let io:IOManager = IOManager(name: "Colors", ext:"txt");
@@ -48,13 +21,13 @@ let colors:[String] = io.readTxt();
 let csv:CSVManager = CSVManager();
 csv.read(lines: colors);
 
+tester.printer(colors: csv.colors, groups: csv.groups);
+
 // create ASE manger and add everything
 let ase:ASEManager = ASEManager();
-let test:([ASEColor] , ASEGroup) = someColors();
-ase.colors = test.0
-//let grp:ASEGroup = ASEGroup("Group 1");
-//grp.colors.append(contentsOf: csv.colors);
-ase.groups.append(test.1);
+ase.colors = csv.colors;
+ase.groups = csv.groups;
+
 // write to bytes
 var bytes:Data = ase.write();
 
@@ -69,17 +42,9 @@ let c = bytes.count
 
 if ( ase.read(block: bytes) )
 {
-    for c in ase.colors
-    {
-        print(c.name);
-    }
-    for g in ase.groups
-    {
-        print("Group \(g.name)");
-        for cg in g.colors
-        { print(cg.name) };
-    }
+    tester.printer(colors: ase.colors, groups: ase.groups);
 }
+
 
 // create a Procreate manager of the same colors
 //let pro:ProcreateManager = ProcreateManager(colors: ase.colors);
@@ -91,5 +56,4 @@ if ( ase.read(block: bytes) )
 //print("Wrote \(total) colors to an ASE file of size \(c).");
 
 //print(json);
-
 
