@@ -3,7 +3,7 @@
 ## Disclaimer
 I'm in the middle of adding code that will ZIP the Procreate JSON format back into an archive so it doesn't full work with Procreate yet
 
-## Desc ription
+## Description
 
 Some simple Swift 4 classes to convert a collection of colors to/from an Adobe ASE Swatch file, Procreate file or plain CSV file. 
 
