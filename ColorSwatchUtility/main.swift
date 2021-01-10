@@ -55,7 +55,14 @@ pro.colors = ase.colors;
 pro.groups = ase.groups;
 
 let json:String = pro.write();
-print(json);
+if let d = Data(json.utf8).gzip()
+{
+    io.filename = "copic";
+    io.ext = "zip";
+    _ = io.write(d);
+}
+
+//_ = io.writePackage(json: json, hideExt:false);
 
 //let total:Int = ase.groups.reduce(0, {x,y in x+y.colors.count}) + ase.colors.count
 //print("Wrote \(total) colors to an ASE file of size \(c).");

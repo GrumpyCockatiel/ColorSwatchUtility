@@ -120,4 +120,30 @@ class IOManager
         return true;
     }
     
+    //
+    func writePackage(json:String, hideExt:Bool = true) -> Bool
+    {
+        let data:Data = json.data(using: .utf8)!;
+        let main:FileWrapper = FileWrapper(regularFileWithContents: data);
+        let pkg:FileWrapper = FileWrapper(directoryWithFileWrappers: ["main.json":main] );
+        pkg.preferredFilename = "main.json";
+        
+        do
+        {
+            try pkg.write(to:self.currentPath, options: .atomic, originalContentsURL: nil);
+            
+            if (hideExt)
+            {
+                try FileManager.default.setAttributes([.extensionHidden: true], ofItemAtPath: self.currentPath.path);
+            }
+        }
+        catch let error as NSError
+        {
+            print("Failed writing to URL: \(self.currentPath), Error: " + error.localizedDescription);
+            return false;
+        }
+        
+        return true;
+    }
+    
 }
